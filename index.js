@@ -1,4 +1,4 @@
-const api = require('./src/api');
+const api = require('./src/api.js');
 
 async function exampleUsage() {
     const odb = api({apiKey: '1234', host: 'objektdatenbank.at'});
