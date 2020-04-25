@@ -2,10 +2,20 @@
   "name": "odb-api",
   "version": "1.0.3",
   "description": "Interface for managing objectdatenbank.at items",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
   },
+  "files": ["lib/**/*"],
   "keywords": [
     "odb",
     "fwei",
@@ -21,5 +31,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/fitforfire/objektdatenbank-api-nodejs"
+  },
+  "devDependencies": {
+    "@types/request-promise": "^4.1.46",
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
   }
 }
