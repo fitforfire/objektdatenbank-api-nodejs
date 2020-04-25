@@ -6,25 +6,25 @@ export interface ApiConfig {
 }
 
 export interface OdbObject {
-  id: string;
+  id: number;
   name: string;
   text: string;
   markerLabel: string;
   lat: string;
   lng: string;
-  catId: string;
+  catId: number;
 }
 
 export interface OdbApiHandle {
-  getList: (layerId: string) => Promise<OdbObject[]>;
-  getObject: (layerId: string, objectId: string) => Promise<OdbObject>;
-  updateObject: (layerId: string, objectId: string, update: Partial<OdbObject>) => Promise<OdbObject>;
-  addObject: (layerId: string, data: any) => Promise<OdbObject>;
-  removeObject: (layerId: string, objectId: string) => Promise<OdbObject>;
+  getList: (layerId: number) => Promise<OdbObject[]>;
+  getObject: (layerId: number, objectId: number) => Promise<OdbObject>;
+  updateObject: (layerId: number, objectId: number, update: Partial<OdbObject>) => Promise<OdbObject>;
+  addObject: (layerId: number, data: Partial<OdbObject>) => Promise<OdbObject>;
+  removeObject: (layerId: number, objectId: number) => Promise<OdbObject>;
 }
 
 export default function (config: ApiConfig): OdbApiHandle {
-  async function getList(layerId: string): Promise<OdbObject[]> {
+  async function getList(layerId: number): Promise<OdbObject[]> {
     const data = await rp({
       uri: `${config.host}/rest/layers/${layerId}/objects`,
       method: 'GET',
@@ -35,7 +35,7 @@ export default function (config: ApiConfig): OdbApiHandle {
     return JSON.parse(data);
   }
 
-  async function getObject(layerId: string, objectId: string): Promise<OdbObject> {
+  async function getObject(layerId: number, objectId: number): Promise<OdbObject> {
     const data = await rp({
       uri: `${config.host}/rest/layers/${layerId}/objects/${objectId}`,
       method: 'GET',
@@ -46,7 +46,7 @@ export default function (config: ApiConfig): OdbApiHandle {
     return JSON.parse(data);
   }
 
-  async function updateObject(layerId: string, objectId: string, update: Partial<OdbObject>): Promise<OdbObject> {
+  async function updateObject(layerId: number, objectId: number, update: Partial<OdbObject>): Promise<OdbObject> {
     const data = await rp({
       uri: `${config.host}/rest/layers/${layerId}/objects/${objectId}`,
       method: 'POST',
@@ -58,7 +58,7 @@ export default function (config: ApiConfig): OdbApiHandle {
     return JSON.parse(data);
   }
 
-  async function addObject(layerId: string, data: Partial<OdbObject>): Promise<OdbObject> {
+  async function addObject(layerId: number, data: Partial<OdbObject>): Promise<OdbObject> {
     const d = await rp({
       uri: `${config.host}/rest/layers/${layerId}/objects`,
       method: 'POST',
@@ -70,7 +70,7 @@ export default function (config: ApiConfig): OdbApiHandle {
     return JSON.parse(d);
   }
 
-  async function removeObject(layerId: string, objectId: string): Promise<OdbObject> {
+  async function removeObject(layerId: number, objectId: number): Promise<OdbObject> {
     const d = await rp({
       uri: `${config.host}/rest/layers/${layerId}/objects/${objectId}`,
       method: 'DELETE',
