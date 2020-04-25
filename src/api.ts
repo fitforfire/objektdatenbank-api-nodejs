@@ -7,7 +7,7 @@ export interface ApiConfig {
 
 export interface OdbObject {
   id: number;
-  name: string;
+  title: string;
   text: string;
   markerLabel: string;
   lat: string;
