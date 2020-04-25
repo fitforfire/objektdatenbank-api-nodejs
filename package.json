@@ -1,6 +1,6 @@
 {
   "name": "odb-api",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Interface for managing objectdatenbank.at items",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
