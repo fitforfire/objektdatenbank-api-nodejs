@@ -1,6 +1,6 @@
 {
   "name": "odb-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Interface for managing objectdatenbank.at items",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,13 +9,15 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "keywords": [
     "odb",
     "fwei",
